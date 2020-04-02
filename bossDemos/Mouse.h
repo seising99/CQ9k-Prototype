@@ -26,9 +26,10 @@ public:
 	sf::Vector2f getPosition();
 
 	std::vector<Projectile*> getProjectiles();
-	void updatePositions();
 
-	void Draw();
+	void updatePositions();	//Update Model
+	void inputHandler();	//Controller
+	void Draw();			//Update View
 
 	bool checkInWindow();
 

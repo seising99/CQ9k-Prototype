@@ -57,6 +57,25 @@ void Mouse::updatePositions()
 	sMouse.setPosition(position);
 	sMouse.setRotation(angle);
 
+	//Reset angle at 360
+	if (angle > 360) angle = angle - 360;
+
+
+}
+
+void Mouse::inputHandler()
+{
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		angle -= 200 * DT;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		angle += 200 * DT;
+		
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		angle -= 400 * DT;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		angle += 400 * DT;
+
 }
 
 void Mouse::Draw()

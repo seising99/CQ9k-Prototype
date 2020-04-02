@@ -6,7 +6,7 @@
 #define HEIGHT 720
 
 #define WINDOW Game::instance()->getWindow()
-
+#define DT Game::instance()->getTime()
 class Game
 {
 
@@ -14,6 +14,9 @@ private:
 
 	Game();
 	~Game();
+
+	sf::Clock deltaClock;
+	float deltaTime;
 
 	Mouse mouse;
 
@@ -28,8 +31,12 @@ private:
 public:
 
 	void run();
+
 	sf::RenderWindow& getWindow();
+
 	Mouse& getMouse();
+
+	float getTime();
 
 	static Game* instance()
 	{
