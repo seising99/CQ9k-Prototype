@@ -37,6 +37,6 @@ void TextureMap::EmplaceTextures()
 
 	sf::Texture* tBullet = new sf::Texture();
 	tBullet->loadFromFile("sprites/sBullet.png");
-	map.emplace("bullet", tMouse);
+	map.emplace("bullet", tBullet);
 
 }

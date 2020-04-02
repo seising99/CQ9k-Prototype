@@ -2,16 +2,15 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Projectile.h"
+#include "Entity.h"
 
-class Mouse
+class Mouse : public Entity
 {
 
-	sf::Vector2f position;
-
-	float angle;
 	int rocketCount;
 
-	sf::Sprite sMouse;
+	bool canFire;
+	sf::Clock cooldown;
 
 	std::vector<Projectile*> projectiles;
 
@@ -23,22 +22,13 @@ public:
 	void fireBullet();
 	void fireRocket();
 
-	sf::Vector2f getPosition();
-
 	std::vector<Projectile*> getProjectiles();
 
-	void updatePositions();	//Update Model
+	void update();	//Update Model
 	void inputHandler();	//Controller
-	void Draw();			//Update View
-
-	bool checkInWindow();
+	//void Draw();			//Update View
 
 	int getRocketCount() const;
 	void setRocketCount(int newCount);
-
-	float getAngle() const;
-	void setAngle(float newAngle);
-
-	sf::Sprite getSprite();
 
 };

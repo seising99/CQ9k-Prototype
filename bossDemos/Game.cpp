@@ -4,8 +4,9 @@
 Game::Game()
 {
 	window.create(sf::VideoMode(WIDTH, HEIGHT), "CompuQuest9000 Boss Demo");
-	window.setView(sf::View(sf::FloatRect(0,0,window.getSize().x, window.getSize().y)));
+	window.setView(sf::View(sf::FloatRect(0,0, (float)window.getSize().x, (float)window.getSize().y)));
 	window.setMouseCursorVisible(false);
+	deltaTime = 0;
 	//window.setFramerateLimit(60);
 }
 
@@ -48,7 +49,7 @@ void Game::input()
 			window.close();
 
 		if(event.type == sf::Event::Resized)
-			window.setView(sf::View(sf::FloatRect(0, 0, window.getSize().x, window.getSize().y)));
+			window.setView(sf::View(sf::FloatRect(0, 0, (float)window.getSize().x, (float)window.getSize().y)));
 
 		if (event.type == sf::Event::KeyPressed)
 		{
@@ -64,7 +65,7 @@ void Game::input()
 
 void Game::update()
 {
-	mouse.updatePositions();
+	mouse.update();
 }
 
 void Game::render()
