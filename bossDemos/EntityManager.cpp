@@ -32,9 +32,3 @@ void EntityManager::draw()
 		e->draw();
 
 }
-
-//Get Entities
-std::vector<Entity*>* EntityManager::getEntities()
-{
-	return &entities;
-}

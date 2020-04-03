@@ -31,7 +31,7 @@ class Bullet : public Projectile
 
 public:
 
-	Bullet(sf::Vector2f _pos, sf::Vector2f _vel); //Calls parent, which calls parent, which sets proper texture
+	Bullet(sf::Vector2f _pos, sf::Vector2f _vel, float _rot); //Calls parent, which calls parent, which sets proper texture
 
 	int getDamage();
 
@@ -42,7 +42,7 @@ class Rocket : public Projectile
 
 public:
 
-	Rocket(sf::Vector2f _pos, sf::Vector2f _vel); //Calls parent, which calls parent, which sets proper texture
+	Rocket(sf::Vector2f _pos, sf::Vector2f _vel, float _rot); //Calls parent, which calls parent, which sets proper texture
 
 	int getDamage();
 

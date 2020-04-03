@@ -12,7 +12,7 @@
 
 #define BULLET_SPEED 25
 
-#define COOLDOWN_TIME .125
+#define COOLDOWN_TIME .1
 
 class Mouse : public Entity
 {

@@ -1,7 +1,6 @@
 #include "Mouse.h"
 #include "Game.h"
 #include "TextureMap.h"
-#include <iostream>
 
 Mouse::Mouse() : Entity(TEXTURES("mouse"))
 {
@@ -25,7 +24,7 @@ void Mouse::fireBullet()
 	sf::Vector2f pos = this->getPosition();
 	sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
 
-	Bullet* newBullet = new Bullet(pos, vel);
+	Bullet* newBullet = new Bullet(pos, vel, getRotation());
 	projectiles.push_back(newBullet);
 
 }
@@ -36,7 +35,7 @@ void Mouse::fireRocket()
 	sf::Vector2f pos = this->getPosition();
 	sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
 
-	Rocket* newBullet = new Rocket(pos, vel);
+	Rocket* newBullet = new Rocket(pos, vel, getRotation());
 	projectiles.push_back(newBullet);
 
 }
@@ -68,11 +67,17 @@ void Mouse::inputHandler()
 		setRotation(getRotation() + FAST_ROT * DT);
 
 	//Fire Projectiles
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && canFire)
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && canFire && checkInWindow())
 	{
 		canFire = false;
-		std::cout << "FIRED" << std::endl;
 		fireBullet();
+		cooldown.restart();
+	}
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && canFire && checkInWindow())
+	{
+		canFire = false;
+		fireRocket();
 		cooldown.restart();
 	}
 

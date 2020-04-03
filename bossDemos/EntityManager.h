@@ -8,7 +8,7 @@
 /*
 *	EntityManager: Global object to hold, update, and draw entities to the game window
 *	-- vector<Entity*> holds all current game entities, and is sorted by priority to determine what gets drawn first
-	-- Functions update() and draw() come from the Entity class, and call those respective functions on all entities
+*	-- Functions update() and draw() come from the Entity class, and call those respective functions on all entities
 */
 
 class EntityManager : public Entity
@@ -19,14 +19,12 @@ class EntityManager : public Entity
 
 	static EntityManager* singleton;
 
-	std::vector<Entity*> entities;
-
 public:
 
 	void update();
 	void draw();
 
-	std::vector<Entity*>* getEntities();
+	std::vector<Entity*> entities;
 
 	//Lazy Instantiation
 	static EntityManager* instance()

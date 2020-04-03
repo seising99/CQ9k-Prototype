@@ -2,24 +2,26 @@
 #include "SFML/Graphics.hpp"
 #include "Game.h"
 #include "EntityManager.h"
-#include <algorithm>
 
 //Default Constructor -- DO NOT USE --> For Entity Manager 'Composite'
 Entity::Entity()
 {
 	health = 0;
 	rotation = 0;
-
 }
 
 //Destructor -- Remove entity from list of entities, and destroy
 Entity::~Entity()
 {
-	ENTITY_MANAGER->getEntities()->erase(
-		std::remove(ENTITY_MANAGER->getEntities()->begin(), ENTITY_MANAGER->getEntities()->end(), this), 
-		ENTITY_MANAGER->getEntities()->end());
+
+	auto it = std::find(ENTITY_MANAGER->entities.begin(), ENTITY_MANAGER->entities.end(), this);
+
+	if (it != ENTITY_MANAGER->entities.end())
+		ENTITY_MANAGER->entities.erase(it);
+
 }
 
+//Constructor (Most Entities) -- Create entity given texture, position, and velocity
 Entity::Entity(const sf::Texture& txt, sf::Vector2f _pos, sf::Vector2f _vel)
 {
 
@@ -35,10 +37,11 @@ Entity::Entity(const sf::Texture& txt, sf::Vector2f _pos, sf::Vector2f _vel)
 	health = 0;
 	rotation = 0;
 
-	ENTITY_MANAGER->getEntities()->push_back(this);
+	ENTITY_MANAGER->entities.push_back(this); //Add entity to manager
 
 }
 
+//Constructor (Primarily M.O.U.S.E.) -- Create entity with only texture, no position or velocity
 Entity::Entity(const sf::Texture& txt)
 {
 
@@ -51,11 +54,11 @@ Entity::Entity(const sf::Texture& txt)
 	health = 0;
 	rotation = 0;
 
-	ENTITY_MANAGER->getEntities()->push_back(this);
+	ENTITY_MANAGER->entities.push_back(this); //Add entity to manager
 
 }
 
-//Getters and Setters for POS, VEL, and ROT
+//Getters and Setters for position, velocity, rotation, scale, health, and drawing priority
 sf::Vector2f Entity::getPosition()
 {
 	return pos;
@@ -106,6 +109,7 @@ void Entity::setHealth(int _health)
 	health = _health;
 }
 
+//Drawing Priority -- Determines order sprites get drawn to the screen (larger priority is drawn towards the front)
 char Entity::getPriority()
 {
 	return drawPriority;
@@ -116,6 +120,7 @@ void Entity::setPriority(char i)
 	drawPriority = i;
 }
 
+//Check in Window -- Determine if an entity is within the current window
 bool Entity::checkInWindow()
 {
 	sf::FloatRect currentView(
@@ -129,6 +134,7 @@ bool Entity::checkInWindow()
 
 }
 
+//Draw -- If entity is in window, set current position and rotation, and draw entity
 void Entity::draw() //TODO -- Singleton 'View' holds all entities and runs Draw()
 {
 

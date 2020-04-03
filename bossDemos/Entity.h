@@ -3,6 +3,14 @@
 
 #define SPEED_CONST 30
 
+/*
+*	Entity: An abstract class/interface for all game objects
+*	-- Holds a sprite, along with it's position, velocity, and rotation
+*	-- Holds an entities health (if applicable)
+*	-- Holds an entities priority (larger priority entities are drawn towards the front of the screen)
+*	-- update() and draw() to update entity attributes and draw them to the screen
+*/
+
 class Entity
 {
 
@@ -39,13 +47,13 @@ protected:
 	bool checkInWindow();
 
 public:
-	Entity();
-	Entity(const sf::Texture&, sf::Vector2f, sf::Vector2f);
-	Entity(const sf::Texture&);
-	~Entity();
+	Entity(); //Default Constructor -- DO NOT USE
+	Entity(const sf::Texture&, sf::Vector2f, sf::Vector2f); //Primary Constructor
+	Entity(const sf::Texture&); //Constructor without pos/vel (primarily for M.O.U.S.E.)
+	~Entity(); //Destructor
 
 	char getPriority();
-	virtual void update() = 0;
-	void draw();
+	virtual void update() = 0; //All entities must have an update() to update position, velocity, etc.
+	void draw(); //All entities have a draw function, where the default updates position and rotation, and draws the entity to the screen
 
 };

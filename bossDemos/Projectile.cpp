@@ -6,10 +6,18 @@
 Projectile::Projectile(sf::Vector2f _pos, sf::Vector2f _vel, const sf::Texture& txt) : Entity(txt, _pos, _vel) {}
 
 //Bullet Constructor -- Calls Projectile Constructor, and sets appropriate scale
-Bullet::Bullet(sf::Vector2f _pos, sf::Vector2f _vel) : Projectile(_pos, _vel, TEXTURES("bullet")) { setScale(sf::Vector2f(.5f, .5f)); }
+Bullet::Bullet(sf::Vector2f _pos, sf::Vector2f _vel, float _rot) : Projectile(_pos, _vel, TEXTURES("bullet"))
+{ 
+	setScale(sf::Vector2f(0.5f, 0.5f)); 
+	setRotation(_rot);
+}
 
 //Rocket Constructor -- Calls Projectile Constructor, and sets appropriate scale
-Rocket::Rocket(sf::Vector2f _pos, sf::Vector2f _vel) : Projectile(_pos, _vel, TEXTURES("bullet")) { setScale(sf::Vector2f(.5f, .5f)); }
+Rocket::Rocket(sf::Vector2f _pos, sf::Vector2f _vel, float _rot) : Projectile(_pos, _vel, TEXTURES("rocket"))
+{
+	setScale(sf::Vector2f(1.0f, 1.0f));
+	setRotation(_rot);
+}
 
 //Update Position -- Calculate new position for projectile based on current position and velocity, and update model (sprite)
 void Projectile::update()
