@@ -4,6 +4,16 @@
 #include "Projectile.h"
 #include "Entity.h"
 
+#define SLOW_ROT 250
+#define FAST_ROT 500
+
+#define SCALE_X .75f
+#define SCALE_Y .75f
+
+#define BULLET_SPEED 25
+
+#define COOLDOWN_TIME .125
+
 class Mouse : public Entity
 {
 

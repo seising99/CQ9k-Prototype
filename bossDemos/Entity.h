@@ -15,9 +15,9 @@ class Entity
 
 	int health;
 
-protected:
+	char drawPriority = 0;
 
-	virtual void update() = 0;
+protected:
 
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f);
@@ -28,14 +28,24 @@ protected:
 	float getRotation();
 	void setRotation(float);
 
+	sf::Vector2f getScale();
+	void setScale(sf::Vector2f);
+
 	int getHealth();
 	void setHealth(int);
+
+	void setPriority(char);
 
 	bool checkInWindow();
 
 public:
-	Entity(const sf::Texture&, float scaleX = 1, float scaleY = 1);
+	Entity();
+	Entity(const sf::Texture&, sf::Vector2f, sf::Vector2f);
+	Entity(const sf::Texture&);
+	~Entity();
 
-	void Draw();
+	char getPriority();
+	virtual void update() = 0;
+	void draw();
 
 };

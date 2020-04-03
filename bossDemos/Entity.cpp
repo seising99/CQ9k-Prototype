@@ -1,8 +1,45 @@
 #include "Entity.h"
 #include "SFML/Graphics.hpp"
 #include "Game.h"
+#include "EntityManager.h"
+#include <algorithm>
 
-Entity::Entity(const sf::Texture &txt, float scaleX, float scaleY)
+//Default Constructor -- DO NOT USE --> For Entity Manager 'Composite'
+Entity::Entity()
+{
+	health = 0;
+	rotation = 0;
+
+}
+
+//Destructor -- Remove entity from list of entities, and destroy
+Entity::~Entity()
+{
+	ENTITY_MANAGER->getEntities()->erase(
+		std::remove(ENTITY_MANAGER->getEntities()->begin(), ENTITY_MANAGER->getEntities()->end(), this), 
+		ENTITY_MANAGER->getEntities()->end());
+}
+
+Entity::Entity(const sf::Texture& txt, sf::Vector2f _pos, sf::Vector2f _vel)
+{
+
+	sprite.setTexture(txt);
+	sprite.setOrigin(
+		(float)sprite.getTextureRect().width / 2,
+		(float)sprite.getTextureRect().height / 2
+	);
+
+	pos = _pos;
+	vel = _vel;
+
+	health = 0;
+	rotation = 0;
+
+	ENTITY_MANAGER->getEntities()->push_back(this);
+
+}
+
+Entity::Entity(const sf::Texture& txt)
 {
 
 	sprite.setTexture(txt);
@@ -10,10 +47,11 @@ Entity::Entity(const sf::Texture &txt, float scaleX, float scaleY)
 		(float)sprite.getTextureRect().width / 2, 
 		(float)sprite.getTextureRect().height / 2
 	);
-	sprite.setScale(scaleX, scaleY);
 
 	health = 0;
 	rotation = 0;
+
+	ENTITY_MANAGER->getEntities()->push_back(this);
 
 }
 
@@ -48,6 +86,36 @@ void Entity::setRotation(float _rotation)
 	rotation = _rotation;
 }
 
+sf::Vector2f Entity::getScale()
+{
+	return sprite.getScale();
+}
+
+void Entity::setScale(sf::Vector2f _scale)
+{
+	sprite.setScale(_scale);
+}
+
+int Entity::getHealth()
+{
+	return health;
+}
+
+void Entity::setHealth(int _health)
+{
+	health = _health;
+}
+
+char Entity::getPriority()
+{
+	return drawPriority;
+}
+
+void Entity::setPriority(char i)
+{
+	drawPriority = i;
+}
+
 bool Entity::checkInWindow()
 {
 	sf::FloatRect currentView(
@@ -61,17 +129,7 @@ bool Entity::checkInWindow()
 
 }
 
-int Entity::getHealth()
-{
-	return health;
-}
-
-void Entity::setHealth(int _health)
-{
-	health = _health;
-}
-
-void Entity::Draw() //TODO -- Singleton 'View' holds all entities and runs Draw()
+void Entity::draw() //TODO -- Singleton 'View' holds all entities and runs Draw()
 {
 
 	if (checkInWindow())

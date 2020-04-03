@@ -7,14 +7,24 @@
 
 #define WINDOW Game::instance()->getWindow()
 #define DT Game::instance()->getTime()
+
+/*
+*	Game: The Global Game Object
+*	-- Singleton ensures single global game object
+*	-- Holds game's M.O.U.S.E., deltaClock/Time, and render window
+*	-- Game operations split into 3 functions
+*		-- Input Handling
+*		-- Updating Entities
+*		-- Rendering Entities
+*/
+
 class Game
 {
-
-private:
 
 	Game();
 	~Game();
 
+	//deltaClock and deltaTime ensure physics act the same regardless of framerate
 	sf::Clock deltaClock;
 	float deltaTime;
 
@@ -38,6 +48,7 @@ public:
 
 	float getTime();
 
+	//Lazy Instantiation
 	static Game* instance()
 	{
 		if (!singleton)

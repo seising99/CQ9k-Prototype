@@ -3,7 +3,7 @@
 #include "TextureMap.h"
 #include <iostream>
 
-Mouse::Mouse() : Entity(TEXTURES("mouse"), .75f, .75f)
+Mouse::Mouse() : Entity(TEXTURES("mouse"))
 {
 
 	canFire = true;
@@ -11,6 +11,9 @@ Mouse::Mouse() : Entity(TEXTURES("mouse"), .75f, .75f)
 
 	setHealth(100);
 	setRotation(-30);
+	setScale(sf::Vector2f(SCALE_X, SCALE_Y));
+
+	setPriority(127);
 
 }
 
@@ -20,7 +23,7 @@ void Mouse::fireBullet()
 {
 
 	sf::Vector2f pos = this->getPosition();
-	sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * 20, sin((getRotation() - 90) * (float)3.1415926 / 180) * 20);
+	sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
 
 	Bullet* newBullet = new Bullet(pos, vel);
 	projectiles.push_back(newBullet);
@@ -31,7 +34,7 @@ void Mouse::fireRocket()
 {
 
 	sf::Vector2f pos = this->getPosition();
-	sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * 20, sin((getRotation() - 90) * (float)3.1415926 / 180) * 20);
+	sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
 
 	Rocket* newBullet = new Rocket(pos, vel);
 	projectiles.push_back(newBullet);
@@ -48,9 +51,6 @@ void Mouse::update()
 
 	setPosition(sf::Vector2f((float)sf::Mouse::getPosition(WINDOW).x, (float)sf::Mouse::getPosition(WINDOW).y));
 
-	for (auto&& i : projectiles)
-		i->update();
-
 }
 
 void Mouse::inputHandler()
@@ -58,14 +58,14 @@ void Mouse::inputHandler()
 
 	//Rotating M.O.U.S.E. Angle
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-		setRotation(getRotation() -200 * DT);
+		setRotation(getRotation() - SLOW_ROT * DT);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-		setRotation(getRotation() + 200 * DT);
+		setRotation(getRotation() + SLOW_ROT * DT);
 		
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		setRotation(getRotation() - 400 * DT);
+		setRotation(getRotation() - FAST_ROT * DT);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		setRotation(getRotation() + 400 * DT);
+		setRotation(getRotation() + FAST_ROT * DT);
 
 	//Fire Projectiles
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && canFire)
@@ -77,7 +77,7 @@ void Mouse::inputHandler()
 	}
 
 	//Projectile Cooldown
-	if (cooldown.getElapsedTime().asSeconds() > 0.5)
+	if (cooldown.getElapsedTime().asSeconds() > COOLDOWN_TIME)
 	{
 		cooldown.restart();
 		canFire = true;
