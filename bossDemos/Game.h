@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Mouse.h"
+#include "GameState.h"
 
 #define WIDTH 1280
 #define HEIGHT 720
@@ -11,7 +11,6 @@
 /*
 *	Game: The Global Game Object
 *	-- Singleton ensures single global game object
-*	-- Holds game's M.O.U.S.E., deltaClock/Time, and render window
 *	-- Game operations split into 3 functions
 *		-- Input Handling
 *		-- Updating Entities
@@ -24,11 +23,11 @@ class Game
 	Game();
 	~Game();
 
+	GameState* currentState;
+
 	//deltaClock and deltaTime ensure physics act the same regardless of framerate
 	sf::Clock deltaClock;
 	float deltaTime;
-
-	Mouse mouse;
 
 	static Game* singleton;
 
@@ -43,8 +42,6 @@ public:
 	void run();
 
 	sf::RenderWindow& getWindow();
-
-	Mouse& getMouse();
 
 	float getTime();
 

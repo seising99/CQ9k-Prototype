@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "TextureMap.h"
 #include "EntityManager.h"
+#include "HackModeState.h"
 
 //Default Constructor -- Creates and initializes game window
 Game::Game()
@@ -10,12 +11,14 @@ Game::Game()
 	window.setMouseCursorVisible(false);
 	deltaTime = 0;
 	window.setFramerateLimit(60);
+	currentState = new HackModeState();
 }
 
 //Destructor -- delete singleton
 Game::~Game()
 {
 	delete singleton;
+	delete currentState;
 }
 
 //Return deltaTime
@@ -41,11 +44,11 @@ void Game::run()
 
 }
 
-//Input Handler -- Handles Input! -- Calls MOUSE's input handler, and checks for window events (Controller)
+//Input Handler -- Handles Input! -- Calls current state's input handler, and checks for window events (Controller)
 void Game::input()
 {
 
-	mouse.inputHandler();
+	currentState->input();
 
     sf::Event event;
     while (window.pollEvent(event))
@@ -63,35 +66,31 @@ void Game::input()
 			if (event.key.code == sf::Keyboard::Escape)
 				window.close();
 
+			if (event.key.code == sf::Keyboard::T)
+			{
+
+			}
+
 		}
 
     }
 
 }
 
-//Update -- Update Entities (Model)
+//Update -- Update State (Model)
 void Game::update()
 {
-	ENTITY_MANAGER->update();
+	currentState->update();
 }
 
 //Render -- Clear window, draw sprites, display (View)
 void Game::render()
 {
-
-	window.clear();
-	ENTITY_MANAGER->draw();
-	window.display();
-
+	currentState->render();
 }
 
 //Get Window and Get MOUSE
 sf::RenderWindow& Game::getWindow()
 {
 	return window;
-}
-
-Mouse& Game::getMouse()
-{
-	return mouse;
 }
