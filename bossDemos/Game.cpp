@@ -6,12 +6,17 @@
 //Default Constructor -- Creates and initializes game window
 Game::Game()
 {
+
 	window.create(sf::VideoMode(WIDTH, HEIGHT), "CompuQuest9000 Boss Demo");
 	window.setView(sf::View(sf::FloatRect(0,0, (float)window.getSize().x, (float)window.getSize().y)));
 	window.setMouseCursorVisible(false);
 	deltaTime = 0;
 	window.setFramerateLimit(60);
-	currentState = new HackModeState();
+
+	sf::Image icon;
+	icon.loadFromFile("sprites/icon.png");
+	window.setIcon(32,32, icon.getPixelsPtr());
+
 }
 
 //Destructor -- delete singleton
@@ -30,6 +35,8 @@ float Game::getTime()
 //Run -- Runs game in a loop
 void Game::run()
 {
+
+	currentState = new HackModeState();
 
 	while (window.isOpen())
 	{

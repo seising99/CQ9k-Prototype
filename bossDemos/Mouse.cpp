@@ -2,13 +2,15 @@
 #include "Game.h"
 #include "TextureMap.h"
 
-Mouse::Mouse() : Entity(TEXTURES("mouse"))
+Mouse::Mouse() : LivingEntity(TEXTURES("mouse"))
 {
 
 	canFire = true;
 	rocketCount = 0;
+	cooldownTime = 0;
 
 	setHealth(100);
+
 	setRotation(-30);
 	setScale(sf::Vector2f(SCALE_X, SCALE_Y));
 
@@ -71,20 +73,22 @@ void Mouse::inputHandler()
 	{
 		canFire = false;
 		fireBullet();
-		cooldown.restart();
+		cooldownClock.restart();
+		cooldownTime = COOLDOWN_LEFT;
 	}
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && canFire && checkInWindow())
 	{
 		canFire = false;
 		fireRocket();
-		cooldown.restart();
+		cooldownClock.restart();
+		cooldownTime = COOLDOWN_RIGHT;
 	}
 
 	//Projectile Cooldown
-	if (cooldown.getElapsedTime().asSeconds() > COOLDOWN_TIME)
+	if (cooldownClock.getElapsedTime().asSeconds() > cooldownTime)
 	{
-		cooldown.restart();
+		cooldownClock.restart();
 		canFire = true;
 	}
 

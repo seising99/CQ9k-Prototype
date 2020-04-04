@@ -3,7 +3,7 @@
 #include "Game.h"
 
 //Projectile Constructor -- Calls Entity Constructor with appropriate texture, position, and velocity
-Projectile::Projectile(sf::Vector2f _pos, sf::Vector2f _vel, const sf::Texture& txt) : Entity(txt, _pos, _vel) {}
+Projectile::Projectile(sf::Vector2f _pos, sf::Vector2f _vel, const sf::Texture& txt): LivingEntity(txt, _pos, _vel) {}
 
 //Bullet Constructor -- Calls Projectile Constructor, and sets appropriate scale
 Bullet::Bullet(sf::Vector2f _pos, sf::Vector2f _vel, float _rot) : Projectile(_pos, _vel, TEXTURES("bullet"))
@@ -28,6 +28,11 @@ void Projectile::update()
 	//Delete if outside window
 	if (!checkInWindow()) delete this;
 
+}
+
+void Projectile::damage(LivingEntity* _e)
+{
+	_e->setHealth(_e->getHealth() - getDamage());
 }
 
 //Get Damage -- Different damage for each projectile type

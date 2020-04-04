@@ -19,6 +19,12 @@
     <Filter Include="Header Files\HackMode">
       <UniqueIdentifier>{fd3aa6d7-6800-41cc-a6a6-1083a83edb91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\HackMode\Enemies">
+      <UniqueIdentifier>{762ec954-c540-4b77-b28d-08bd3271a906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HackMode\Enemies">
+      <UniqueIdentifier>{758ab5be-6414-4984-9c44-7db5825f3ab2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -44,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="HackModeState.cpp">
       <Filter>Source Files\HackMode</Filter>
+    </ClCompile>
+    <ClCompile Include="LivingEntity.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +114,12 @@
     </ClInclude>
     <ClInclude Include="HackModeState.h">
       <Filter>Header Files\HackMode</Filter>
+    </ClInclude>
+    <ClInclude Include="LivingEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\HackMode\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -21,8 +21,6 @@ class Entity
 
 	float rotation;
 
-	int health;
-
 	char drawPriority = 0;
 
 protected:
@@ -38,9 +36,6 @@ protected:
 
 	sf::Vector2f getScale();
 	void setScale(sf::Vector2f);
-
-	int getHealth();
-	void setHealth(int);
 
 	void setPriority(char);
 

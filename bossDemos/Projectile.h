@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Entity.h"
+#include "LivingEntity.h"
 
 #define SPEED 25
 
@@ -11,7 +11,7 @@
 *	-- getDamage() virtual function, different projectiles deal different damage
 */
 
-class Projectile : public Entity
+class Projectile : public LivingEntity
 {
 
 protected:
@@ -23,6 +23,8 @@ public:
 	Projectile(sf::Vector2f, sf::Vector2f, const sf::Texture&);
 
 	void update();
+
+	void damage(LivingEntity*);
 
 };
 

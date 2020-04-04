@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Projectile.h"
-#include "Entity.h"
+#include "LivingEntity.h"
 
 #define SLOW_ROT 250
 #define FAST_ROT 500
@@ -12,15 +12,18 @@
 
 #define BULLET_SPEED 25
 
-#define COOLDOWN_TIME .1
+#define COOLDOWN_LEFT .1f
+#define COOLDOWN_RIGHT .25f
 
-class Mouse : public Entity
+class Mouse : public LivingEntity
 {
 
 	int rocketCount;
 
 	bool canFire;
-	sf::Clock cooldown;
+	
+	sf::Clock cooldownClock;	//Tracks time elapsed for cooldown
+	float cooldownTime;			//Determines length of cooldown
 
 	std::vector<Projectile*> projectiles;
 
@@ -34,9 +37,8 @@ public:
 
 	std::vector<Projectile*> getProjectiles();
 
-	void update();	//Update Model
+	void update();			//Update Model
 	void inputHandler();	//Controller
-	//void Draw();			//Update View
 
 	int getRocketCount() const;
 	void setRocketCount(int newCount);

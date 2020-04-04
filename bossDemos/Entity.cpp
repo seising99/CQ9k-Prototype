@@ -6,7 +6,6 @@
 //Default Constructor -- DO NOT USE --> For Entity Manager 'Composite'
 Entity::Entity()
 {
-	health = 0;
 	rotation = 0;
 }
 
@@ -34,7 +33,6 @@ Entity::Entity(const sf::Texture& txt, sf::Vector2f _pos, sf::Vector2f _vel)
 	pos = _pos;
 	vel = _vel;
 
-	health = 0;
 	rotation = 0;
 
 	ENTITY_MANAGER->entities.push_back(this); //Add entity to manager
@@ -51,7 +49,6 @@ Entity::Entity(const sf::Texture& txt)
 		(float)sprite.getTextureRect().height / 2
 	);
 
-	health = 0;
 	rotation = 0;
 
 	ENTITY_MANAGER->entities.push_back(this); //Add entity to manager
@@ -97,16 +94,6 @@ sf::Vector2f Entity::getScale()
 void Entity::setScale(sf::Vector2f _scale)
 {
 	sprite.setScale(_scale);
-}
-
-int Entity::getHealth()
-{
-	return health;
-}
-
-void Entity::setHealth(int _health)
-{
-	health = _health;
 }
 
 //Drawing Priority -- Determines order sprites get drawn to the screen (larger priority is drawn towards the front)
