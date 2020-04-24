@@ -33,6 +33,7 @@ void Projectile::update()
 void Projectile::damage(LivingEntity* _e)
 {
 	_e->setHealth(_e->getHealth() - getDamage());
+	kill(this);
 }
 
 //Get Damage -- Different damage for each projectile type

@@ -1,7 +1,5 @@
 #pragma once
-#include "SFML/Graphics.hpp"
-
-#define SPEED_CONST 30
+#include <SFML/Graphics.hpp>
 
 /*
 *	Entity: An abstract class/interface for all game objects
@@ -13,6 +11,8 @@
 
 class Entity
 {
+
+	int id;
 
 	sf::Sprite sprite;
 
@@ -47,8 +47,12 @@ public:
 	Entity(const sf::Texture&); //Constructor without pos/vel (primarily for M.O.U.S.E.)
 	~Entity(); //Destructor
 
+	int getID();
 	char getPriority();
 	virtual void update() = 0; //All entities must have an update() to update position, velocity, etc.
 	void draw(); //All entities have a draw function, where the default updates position and rotation, and draws the entity to the screen
+
+	static Entity& getEntity(int _id);
+	static bool checkCollision(Entity&, Entity&, bool);
 
 };

@@ -2,11 +2,13 @@
 #include "SFML/Graphics.hpp"
 #include "Game.h"
 #include "EntityManager.h"
+#include "Collision.h"
 
 //Default Constructor -- DO NOT USE --> For Entity Manager 'Composite'
 Entity::Entity()
 {
 	rotation = 0;
+	id = std::time(0);
 }
 
 //Destructor -- Remove entity from list of entities, and destroy
@@ -23,6 +25,8 @@ Entity::~Entity()
 //Constructor (Most Entities) -- Create entity given texture, position, and velocity
 Entity::Entity(const sf::Texture& txt, sf::Vector2f _pos, sf::Vector2f _vel)
 {
+
+	id = std::time(0);
 
 	sprite.setTexture(txt);
 	sprite.setOrigin(
@@ -42,6 +46,8 @@ Entity::Entity(const sf::Texture& txt, sf::Vector2f _pos, sf::Vector2f _vel)
 //Constructor (Primarily M.O.U.S.E.) -- Create entity with only texture, no position or velocity
 Entity::Entity(const sf::Texture& txt)
 {
+
+	id = std::time(0);
 
 	sprite.setTexture(txt);
 	sprite.setOrigin(
@@ -96,6 +102,11 @@ void Entity::setScale(sf::Vector2f _scale)
 	sprite.setScale(_scale);
 }
 
+int Entity::getID()
+{
+	return id;
+}
+
 //Drawing Priority -- Determines order sprites get drawn to the screen (larger priority is drawn towards the front)
 char Entity::getPriority()
 {
@@ -136,5 +147,35 @@ void Entity::draw() //TODO -- Singleton 'View' holds all entities and runs Draw(
 		WINDOW.draw(sprite);
 
 	}
+
+}
+
+Entity& Entity::getEntity(int id)
+{
+
+	for (Entity* e : ENTITY_MANAGER->entities)
+	{
+		if (e->getID() == id)
+		{
+			return *e;
+		}
+	}
+
+}
+
+bool Entity::checkCollision(Entity& _e1, Entity& _e2, bool pixelPerfect = false)
+{
+	
+	if (_e1.sprite.getTextureRect().intersects(_e2.sprite.getTextureRect()))
+	{
+
+		if (pixelPerfect)
+			return Collision::PixelPerfectTest(_e1.sprite, _e2.sprite, 127);
+		else 
+			return true;
+
+	}
+	else 
+		return false;
 
 }

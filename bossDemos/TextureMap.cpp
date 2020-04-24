@@ -43,4 +43,8 @@ void TextureMap::EmplaceTextures()
 	tRocket->loadFromFile("sprites/sRocket.png");
 	map.emplace("rocket", tRocket);
 
+	sf::Texture* tParasite = new sf::Texture();
+	tParasite->loadFromFile("sprites/sParasite.png");
+	map.emplace("parasite", tParasite);
+
 }

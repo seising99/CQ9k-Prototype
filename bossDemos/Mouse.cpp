@@ -42,6 +42,11 @@ void Mouse::fireRocket()
 
 }
 
+void Mouse::damage(LivingEntity* _e)
+{
+	_e->setHealth(_e->getHealth() - 5);
+}
+
 std::vector<Projectile*> Mouse::getProjectiles()
 {
 	return projectiles;

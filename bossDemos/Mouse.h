@@ -34,6 +34,7 @@ public:
 
 	void fireBullet();
 	void fireRocket();
+	void damage(LivingEntity* _e);
 
 	std::vector<Projectile*> getProjectiles();
 

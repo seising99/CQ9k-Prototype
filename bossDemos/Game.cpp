@@ -2,6 +2,8 @@
 #include "TextureMap.h"
 #include "EntityManager.h"
 #include "HackModeState.h"
+#include <time.h>
+#include "Parasite.h"
 
 //Default Constructor -- Creates and initializes game window
 Game::Game()
@@ -16,6 +18,10 @@ Game::Game()
 	sf::Image icon;
 	icon.loadFromFile("sprites/icon.png");
 	window.setIcon(32,32, icon.getPixelsPtr());
+
+	currentState = nullptr;
+
+	srand(time(0));
 
 }
 
@@ -75,7 +81,7 @@ void Game::input()
 
 			if (event.key.code == sf::Keyboard::T)
 			{
-
+				Parasite* p = new Parasite();
 			}
 
 		}

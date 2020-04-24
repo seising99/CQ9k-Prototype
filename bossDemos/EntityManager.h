@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Entity.h"
+#include "Parasite.h"
 #include <vector>
 
 #define ENTITY_MANAGER EntityManager::instance()
@@ -25,6 +26,7 @@ public:
 	void draw();
 
 	std::vector<Entity*> entities;
+	std::vector<Parasite*> parasites;
 
 	//Lazy Instantiation
 	static EntityManager* instance()
