@@ -1,14 +1,18 @@
 #include "MenuState.h"
 #include "HackModeState.h"
+#include "RPGState.h"
 #include "Game.h"
 #include "EntityManager.h"
+#include "TextureMap.h"
 
 MenuState::MenuState()
 {
-	WINDOW.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height / 2), "CompuQuest9000 Demo");
-	WINDOW.setView(sf::View(sf::FloatRect(0, 0, (float)WINDOW.getSize().x, (float)WINDOW.getSize().y)));
-	WINDOW.setMouseCursorVisible(true);
-	WINDOW.setFramerateLimit(60);
+
+	option = 0;
+
+	menu.setTexture(TEXTURES("menu"));
+	menu.setScale(sf::Vector2f((float)WINDOW.getSize().x / 1920.0f, (float)WINDOW.getSize().y / 1080.0f));
+
 }
 
 void MenuState::input()
@@ -35,6 +39,11 @@ void MenuState::input()
 				Game::instance()->setState(new HackModeState());
 			}
 
+			if (event.key.code == sf::Keyboard::R)
+			{
+				Game::instance()->setState(new RPGState());
+			}
+
 		}
 
 	}
@@ -49,5 +58,6 @@ void MenuState::update()
 void MenuState::render()
 {
 	WINDOW.clear();
+	WINDOW.draw(menu);
 	WINDOW.display();
 }

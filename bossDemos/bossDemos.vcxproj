@@ -22,6 +22,7 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Parasite.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="RPGState.cpp" />
     <ClCompile Include="TextureMap.cpp" />
     <ClCompile Include="VectorMath.cpp" />
   </ItemGroup>
@@ -51,6 +52,7 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Parasite.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="RPGState.h" />
     <ClInclude Include="TextureMap.h" />
     <ClInclude Include="VectorMath.h" />
   </ItemGroup>

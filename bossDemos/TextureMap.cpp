@@ -47,4 +47,8 @@ void TextureMap::EmplaceTextures()
 	tParasite->loadFromFile("sprites/sParasite.png");
 	map.emplace("parasite", tParasite);
 
+	sf::Texture* tMenu = new sf::Texture();
+	tMenu->loadFromFile("sprites/cq9k_menu.png");
+	map.emplace("menu", tMenu);
+
 }

@@ -10,18 +10,17 @@
 Game::Game()
 {
 
-	window.create(sf::VideoMode(WIDTH, HEIGHT), "CompuQuest9000 Boss Demo");
-	window.setView(sf::View(sf::FloatRect(0,0, (float)window.getSize().x, (float)window.getSize().y)));
-	window.setMouseCursorVisible(false);
-	deltaTime = 0;
+	window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height / 2), "CompuQuest9000 Demo");
+	window.setView(sf::View(sf::FloatRect(0, 0, (float)window.getSize().x, (float)window.getSize().y)));
+	window.setMouseCursorVisible(true);
 	window.setFramerateLimit(60);
 
 	sf::Image icon;
 	icon.loadFromFile("sprites/icon.png");
-	window.setIcon(32,32, icon.getPixelsPtr());
+	window.setIcon(32, 32, icon.getPixelsPtr());
 
+	deltaTime = 0;
 	currentState = nullptr;
-
 	srand((unsigned int)time(0));
 
 }

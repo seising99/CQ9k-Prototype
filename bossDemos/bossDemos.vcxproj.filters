@@ -31,23 +31,26 @@
     <Filter Include="Header Files\Menu">
       <UniqueIdentifier>{572a933a-7bad-452f-9556-98395d1cf7c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\RPGMode">
+      <UniqueIdentifier>{b96ab465-594b-488c-8ec1-314ac7cbb4ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{0c0453f5-26b0-4269-b47a-9d3a335aba73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{ccd0ea2f-b978-43d9-80f8-9473343b456e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{f2c823e8-04e6-4005-96b1-e04909a80afa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{70f16a4e-d719-45c9-83e0-63b54370d95f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RPGMode">
+      <UniqueIdentifier>{f61f75e2-213d-41f9-9495-edfa1b16c9b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>Source Files\HackMode</Filter>
     </ClCompile>
@@ -56,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="HackModeState.cpp">
       <Filter>Source Files\HackMode</Filter>
-    </ClCompile>
-    <ClCompile Include="LivingEntity.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Parasite.cpp">
       <Filter>Source Files\HackMode\Enemies</Filter>
@@ -71,6 +71,27 @@
     </ClCompile>
     <ClCompile Include="MenuState.cpp">
       <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMap.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="LivingEntity.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="RPGState.cpp">
+      <Filter>Source Files\RPGMode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,32 +130,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>Header Files\HackMode</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Header Files\HackMode</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HackModeState.h">
       <Filter>Header Files\HackMode</Filter>
-    </ClInclude>
-    <ClInclude Include="LivingEntity.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Header Files\HackMode\Enemies</Filter>
@@ -150,6 +153,27 @@
     </ClInclude>
     <ClInclude Include="MenuState.h">
       <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMap.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="LivingEntity.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="RPGState.h">
+      <Filter>Header Files\RPGMode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
