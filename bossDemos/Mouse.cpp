@@ -42,20 +42,23 @@ void Mouse::fireRocket()
 
 }
 
-void Mouse::damage(LivingEntity* _e)
-{
-	_e->setHealth(_e->getHealth() - 5);
-}
-
-std::vector<Projectile*> Mouse::getProjectiles()
+std::vector<Projectile*>& Mouse::getProjectiles()
 {
 	return projectiles;
 }
 
 void Mouse::update()
 {
-
+	//Set new MOUSE position
 	setPosition(sf::Vector2f((float)sf::Mouse::getPosition(WINDOW).x, (float)sf::Mouse::getPosition(WINDOW).y));
+
+	//Delete dead projectiles
+	for(Projectile* p : projectiles)
+		if (p->getHealth() <= 0)
+		{
+			auto it = std::find(projectiles.begin(), projectiles.end(), p);
+			projectiles.erase(it);
+		}
 
 }
 

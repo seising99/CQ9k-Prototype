@@ -7,10 +7,10 @@ class Enemy : public LivingEntity
 
 public:
 
-	Enemy(const sf::Texture& _txt) : LivingEntity(_txt) { };
-	Enemy(const sf::Texture& _txt, sf::Vector2f _pos, sf::Vector2f _vel) : LivingEntity(_txt, _pos, _vel) { };
+	Enemy(const sf::Texture& _txt) : LivingEntity(_txt) { type = EntityType::Hostile; };
+	Enemy(const sf::Texture& _txt, sf::Vector2f _pos, sf::Vector2f _vel) : LivingEntity(_txt, _pos, _vel) { type = EntityType::Hostile; };
 
 	virtual void update() = 0; //Behavior
-	virtual int getDamage() = 0;
+	virtual float getDamage() = 0;
 
 };

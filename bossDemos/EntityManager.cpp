@@ -9,9 +9,6 @@ EntityManager::~EntityManager()
 {
 	for (auto&& e : entities)
 		delete e;
-
-	for (auto&& p : parasites)
-		delete p;
 }
 
 //Update -- update all entities

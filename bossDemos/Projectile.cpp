@@ -5,6 +5,11 @@
 //Projectile Constructor -- Calls Entity Constructor with appropriate texture, position, and velocity
 Projectile::Projectile(sf::Vector2f _pos, sf::Vector2f _vel, const sf::Texture& txt): LivingEntity(txt, _pos, _vel) {}
 
+Projectile::~Projectile()
+{
+	
+}
+
 //Bullet Constructor -- Calls Projectile Constructor, and sets appropriate scale
 Bullet::Bullet(sf::Vector2f _pos, sf::Vector2f _vel, float _rot) : Projectile(_pos, _vel, TEXTURES("bullet"))
 { 
@@ -25,8 +30,11 @@ void Projectile::update()
 
 	setPosition(getPosition() + (getVelocity() * (DT * SPEED)));
 
-	//Delete if outside window
-	if (!checkInWindow()) delete this;
+	//Kill if outside window
+	if (!checkInWindow()) kill(this);
+
+	//Delete if killed
+	if (getHealth() <= 0) delete this;
 
 }
 
@@ -37,12 +45,12 @@ void Projectile::damage(LivingEntity* _e)
 }
 
 //Get Damage -- Different damage for each projectile type
-int Bullet::getDamage()
+float Bullet::getDamage() const
 {
 	return 1;
 }
 
-int Rocket::getDamage()
+float Rocket::getDamage() const
 {
 	return 3;
 }

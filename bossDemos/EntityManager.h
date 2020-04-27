@@ -12,7 +12,7 @@
 *	-- Functions update() and draw() come from the Entity class, and call those respective functions on all entities
 */
 
-class EntityManager : public Entity
+class EntityManager
 {
 
 	EntityManager();
@@ -26,7 +26,6 @@ public:
 	void draw();
 
 	std::vector<Entity*> entities;
-	std::vector<Parasite*> parasites;
 
 	//Lazy Instantiation
 	static EntityManager* instance()

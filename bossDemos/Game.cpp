@@ -21,7 +21,7 @@ Game::Game()
 
 	currentState = nullptr;
 
-	srand(time(0));
+	srand((unsigned int)time(0));
 
 }
 
@@ -63,31 +63,6 @@ void Game::input()
 
 	currentState->input();
 
-    sf::Event event;
-    while (window.pollEvent(event))
-    {
-
-		if (event.type == sf::Event::Closed)
-			window.close();
-
-		if(event.type == sf::Event::Resized)
-			window.setView(sf::View(sf::FloatRect(0, 0, (float)window.getSize().x, (float)window.getSize().y)));
-
-		if (event.type == sf::Event::KeyPressed)
-		{
-
-			if (event.key.code == sf::Keyboard::Escape)
-				window.close();
-
-			if (event.key.code == sf::Keyboard::T)
-			{
-				Parasite* p = new Parasite();
-			}
-
-		}
-
-    }
-
 }
 
 //Update -- Update State (Model)
@@ -106,4 +81,9 @@ void Game::render()
 sf::RenderWindow& Game::getWindow()
 {
 	return window;
+}
+
+GameState* Game::getState()
+{
+	return currentState;
 }

@@ -4,7 +4,7 @@
 #include "Projectile.h"
 #include "LivingEntity.h"
 
-#define SLOW_ROT 250
+#define SLOW_ROT 200
 #define FAST_ROT 500
 
 #define SCALE_X .75f
@@ -34,9 +34,8 @@ public:
 
 	void fireBullet();
 	void fireRocket();
-	void damage(LivingEntity* _e);
 
-	std::vector<Projectile*> getProjectiles();
+	std::vector<Projectile*>& getProjectiles();
 
 	void update();			//Update Model
 	void inputHandler();	//Controller

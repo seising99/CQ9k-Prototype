@@ -26,9 +26,16 @@ Parasite::Parasite() : Enemy(TEXTURES("parasite"))
 	}
 
 	setPosition(pos);
+	setHealth(5.0f);
 
-	ENTITY_MANAGER->parasites.push_back(this);
+	parasites.push_back(this);
 
+}
+
+Parasite::~Parasite()
+{
+	auto it = std::find(parasites.begin(), parasites.end(), this);
+	parasites.erase(it);
 }
 
 void Parasite::update()
@@ -47,6 +54,8 @@ void Parasite::update()
 	setVelocity(newVel);
 	setPosition(getPosition() + getVelocity());
 
+	if (getHealth() <= 0) delete this;
+
 }
 
 sf::Vector2f Parasite::getAlign()
@@ -60,7 +69,7 @@ sf::Vector2f Parasite::getSeparation()
 
 	sf::Vector2f sum(0, 0);
 
-	for (Parasite* p : ENTITY_MANAGER->parasites)
+	for (Parasite* p : parasites)
 	{
 
 		if (p != this)
@@ -90,7 +99,7 @@ sf::Vector2f Parasite::getSeparation()
 
 }
 
-int Parasite::getDamage()
+float Parasite::getDamage()
 {
 	return 5;
 }

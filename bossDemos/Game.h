@@ -7,6 +7,7 @@
 
 #define WINDOW Game::instance()->getWindow()
 #define DT Game::instance()->getTime()
+#define GAME_STATE Game::instance()->getState()
 
 /*
 *	Game: The Global Game Object
@@ -42,6 +43,7 @@ public:
 	void run();
 
 	sf::RenderWindow& getWindow();
+	GameState* getState();
 
 	float getTime();
 

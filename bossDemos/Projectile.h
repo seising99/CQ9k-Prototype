@@ -16,11 +16,12 @@ class Projectile : public LivingEntity
 
 protected:
 
-	virtual int getDamage() const { return 0; }; //Each projectile has different damage
+	virtual float getDamage() const { return 0; }; //Each projectile has different damage
 
 public:
 
 	Projectile(sf::Vector2f, sf::Vector2f, const sf::Texture&);
+	~Projectile();
 
 	void update();
 
@@ -35,7 +36,7 @@ public:
 
 	Bullet(sf::Vector2f _pos, sf::Vector2f _vel, float _rot); //Calls parent, which calls parent, which sets proper texture
 
-	int getDamage();
+	float getDamage() const;
 
 };
 
@@ -46,6 +47,6 @@ public:
 
 	Rocket(sf::Vector2f _pos, sf::Vector2f _vel, float _rot); //Calls parent, which calls parent, which sets proper texture
 
-	int getDamage();
+	float getDamage() const;
 
 };

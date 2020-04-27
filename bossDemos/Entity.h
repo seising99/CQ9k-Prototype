@@ -9,10 +9,10 @@
 *	-- update() and draw() to update entity attributes and draw them to the screen
 */
 
+enum class EntityType {Static, Living, Hostile};
+
 class Entity
 {
-
-	int id;
 
 	sf::Sprite sprite;
 
@@ -24,6 +24,8 @@ class Entity
 	char drawPriority = 0;
 
 protected:
+
+	EntityType type;
 
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f);
@@ -47,12 +49,10 @@ public:
 	Entity(const sf::Texture&); //Constructor without pos/vel (primarily for M.O.U.S.E.)
 	~Entity(); //Destructor
 
-	int getID();
 	char getPriority();
 	virtual void update() = 0; //All entities must have an update() to update position, velocity, etc.
 	void draw(); //All entities have a draw function, where the default updates position and rotation, and draws the entity to the screen
 
-	static Entity& getEntity(int _id);
-	static bool checkCollision(Entity&, Entity&, bool);
+	static bool checkCollision(Entity&, Entity&, bool = false);
 
 };

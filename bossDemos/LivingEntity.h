@@ -4,22 +4,22 @@
 class LivingEntity : public Entity
 {
 
-	int health;
-	bool damaged = false;
+	float health;
 
 public:
 
 	//Constructors, taken from Entity
-	LivingEntity() : Entity() { health = 1; };
-	LivingEntity(const sf::Texture& _txt, sf::Vector2f _pos, sf::Vector2f _vel) : Entity(_txt, _pos, _vel) { health = 1; };
-	LivingEntity(const sf::Texture& _txt) : Entity(_txt) { health = 1; };
+	LivingEntity() : Entity() { type = EntityType::Living; health = 1; };
+	LivingEntity(const sf::Texture& _txt, sf::Vector2f _pos, sf::Vector2f _vel) : Entity(_txt, _pos, _vel) { type = EntityType::Living; health = 1; };
+	LivingEntity(const sf::Texture& _txt) : Entity(_txt) { type = EntityType::Living;  health = 1; };
 	~LivingEntity() {};
+	
+	virtual float getDamage() { return 0; };
+	virtual void damage(LivingEntity* _e) { _e->health -= getDamage(); };
+	static void kill(LivingEntity* _e) { _e->health = 0; };
 
-	virtual void damage(LivingEntity* _e) { _e->health -= 1; };
-	virtual void kill(LivingEntity* _e) { _e->health = 0; };
-
-	int getHealth() const;
-	void setHealth(int);
+	float getHealth() const;
+	void setHealth(float);
 
 	virtual void update() = 0;
 
