@@ -23,22 +23,32 @@ Mouse::~Mouse() {}
 void Mouse::fireBullet()
 {
 
-	sf::Vector2f pos = this->getPosition();
-	sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
+	if (checkInWindow())
+	{
 
-	Bullet* newBullet = new Bullet(pos, vel, getRotation());
-	projectiles.push_back(newBullet);
+		sf::Vector2f pos = this->getPosition();
+		sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
+
+		Bullet* newBullet = new Bullet(pos, vel, getRotation());
+		projectiles.push_back(newBullet);
+
+	}
 
 }
 
 void Mouse::fireRocket()
 {
 
-	sf::Vector2f pos = this->getPosition();
-	sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
+	if (checkInWindow())
+	{
 
-	Rocket* newBullet = new Rocket(pos, vel, getRotation());
-	projectiles.push_back(newBullet);
+		sf::Vector2f pos = this->getPosition();
+		sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
+
+		Rocket* newBullet = new Rocket(pos, vel, getRotation());
+		projectiles.push_back(newBullet);
+
+	}
 
 }
 
@@ -52,12 +62,13 @@ void Mouse::update()
 	//Set new MOUSE position
 	setPosition(sf::Vector2f((float)sf::Mouse::getPosition(WINDOW).x, (float)sf::Mouse::getPosition(WINDOW).y));
 
-	//Delete dead projectiles
+	//Remove dead projectiles from reference vector
 	for(Projectile* p : projectiles)
 		if (p->getHealth() <= 0)
 		{
 			auto it = std::find(projectiles.begin(), projectiles.end(), p);
-			projectiles.erase(it);
+			if(it != projectiles.end())
+				projectiles.erase(it);
 		}
 
 }

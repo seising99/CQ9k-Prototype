@@ -2,6 +2,7 @@
 #include "TextureMap.h"
 #include "EntityManager.h"
 #include "HackModeState.h"
+#include "MenuState.h"
 #include <time.h>
 #include "Parasite.h"
 
@@ -42,7 +43,7 @@ float Game::getTime()
 void Game::run()
 {
 
-	currentState = new HackModeState();
+	currentState = new MenuState();
 
 	while (window.isOpen())
 	{
@@ -86,4 +87,9 @@ sf::RenderWindow& Game::getWindow()
 GameState* Game::getState()
 {
 	return currentState;
+}
+
+void Game::setState(GameState* newState)
+{
+	currentState = newState;
 }

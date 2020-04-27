@@ -53,30 +53,30 @@ void HackModeState::update()
 
 	//Check collisions for M.O.U.S.E.
 
-	for (Enemy* e : enemies)
+	for (unsigned int i = 0; i < enemies.size(); i++)
 	{
 
 		//MOUSE Collision
-		if (Entity::checkCollision(mouse, *e, true))
+		if (Entity::checkCollision(mouse, *enemies[i], true))
 		{
-			mouse.kill(e);
+			mouse.kill(enemies[i]);
 		}
 
 		//Projectile Collision
-		for (Projectile* p : mouse.getProjectiles())
+		for (unsigned int j = 0; j < mouse.getProjectiles().size(); j++)
 		{
 
-			if (Entity::checkCollision(*p, *e))
-				p->damage(e);
-
+			if (Entity::checkCollision(*mouse.getProjectiles()[j], *enemies[i]))
+				mouse.getProjectiles()[j]->damage(enemies[i]);
 
 		}
 
-		//Remove dead enemies from storage vector
-		if (e->getHealth() <= 0)
+		//Remove dead enemies from reference vector
+		if (enemies[i]->getHealth() <= 0)
 		{
-			auto it = std::find(enemies.begin(), enemies.end(), e);
-			enemies.erase(it);
+			auto it = std::find(enemies.begin(), enemies.end(), enemies[i]);
+			if (it != enemies.end())
+				enemies.erase(it);
 		}
 
 	}

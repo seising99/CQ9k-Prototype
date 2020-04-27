@@ -25,6 +25,12 @@
     <Filter Include="Source Files\HackMode\Enemies">
       <UniqueIdentifier>{758ab5be-6414-4984-9c44-7db5825f3ab2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Menu">
+      <UniqueIdentifier>{8bcec6d5-e9f7-4952-a3f6-29e1d2c11e20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menu">
+      <UniqueIdentifier>{572a933a-7bad-452f-9556-98395d1cf7c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -62,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="Collision.cpp">
       <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Source Files\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Header Files\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

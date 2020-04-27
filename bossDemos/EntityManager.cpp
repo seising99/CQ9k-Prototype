@@ -7,15 +7,17 @@ EntityManager::EntityManager() {}
 //Destructor -- delete all remaining entities
 EntityManager::~EntityManager()
 {
-	for (auto&& e : entities)
-		delete e;
+	for (unsigned int i = 0; i < entities.size(); i++)
+		delete entities[i];
 }
 
 //Update -- update all entities
 void EntityManager::update()
 {
-	for (auto&& e : entities)
-		e->update();
+
+	for (unsigned int i = 0; i < entities.size(); i++)
+		entities[i]->update();
+
 }
 
 //Draw -- sort entity vector, and draw all entities to the screen

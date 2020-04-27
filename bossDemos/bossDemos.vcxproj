@@ -18,6 +18,7 @@
     <ClCompile Include="HackModeState.cpp" />
     <ClCompile Include="LivingEntity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Parasite.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HackModeState.h" />
     <ClInclude Include="LivingEntity.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Parasite.h" />
     <ClInclude Include="Projectile.h" />

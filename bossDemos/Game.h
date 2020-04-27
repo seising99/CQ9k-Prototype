@@ -44,6 +44,7 @@ public:
 
 	sf::RenderWindow& getWindow();
 	GameState* getState();
+	void setState(GameState*);
 
 	float getTime();
 
