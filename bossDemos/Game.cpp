@@ -10,7 +10,7 @@
 Game::Game()
 {
 
-	window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height / 2), "CompuQuest9000 Demo");
+	window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width / 1.5, sf::VideoMode::getDesktopMode().height / 1.5), "CompuQuest9000 Demo");
 	window.setView(sf::View(sf::FloatRect(0, 0, (float)window.getSize().x, (float)window.getSize().y)));
 	window.setMouseCursorVisible(true);
 	window.setFramerateLimit(60);
