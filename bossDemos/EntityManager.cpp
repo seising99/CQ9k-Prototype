@@ -1,5 +1,4 @@
 #include "EntityManager.h"
-#include "Parasite.h"
 
 //Default Constructor
 EntityManager::EntityManager() {}
@@ -31,7 +30,7 @@ void EntityManager::draw()
 		return a->getPriority() < b->getPriority();
 	});
 
-	for (auto&& e : entities)
-		e->draw();
+	for (unsigned int i = 0; i < entities.size(); i++)
+		entities[i]->draw();
 
 }

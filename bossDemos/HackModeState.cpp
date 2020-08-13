@@ -1,10 +1,14 @@
 #include "HackModeState.h"
 #include "Game.h"
+#include "Parasite.h"
+#include "Toast.h"
 #include "EntityManager.h"
-#include <iostream>
 
 HackModeState::HackModeState()
 {
+
+	mouse = new Mouse();
+
 	WINDOW.create(sf::VideoMode::getDesktopMode(), "CompuQuest9000 Demo", sf::Style::Fullscreen);
 	WINDOW.setView(sf::View(sf::FloatRect(0, 0, (float)WINDOW.getSize().x, (float)WINDOW.getSize().y)));
 	WINDOW.setMouseCursorVisible(false);
@@ -14,7 +18,7 @@ HackModeState::HackModeState()
 void HackModeState::input()
 {
 
-	mouse.inputHandler();
+	mouse->inputHandler();
 
 	sf::Event event;
 	while (WINDOW.pollEvent(event))
@@ -37,6 +41,11 @@ void HackModeState::input()
 				Parasite* p = new Parasite();
 				enemies.push_back(p);
 			}
+			if (event.key.code == sf::Keyboard::Y)
+			{
+				Toast* t = new Toast();
+				enemies.push_back(t);
+			}
 
 		}
 
@@ -57,17 +66,17 @@ void HackModeState::update()
 	{
 
 		//MOUSE Collision
-		if (Entity::checkCollision(mouse, *enemies[i], true))
+		if (Entity::checkCollision(*mouse, *enemies[i], true))
 		{
-			mouse.kill(enemies[i]);
+			mouse->kill(enemies[i]);
 		}
 
 		//Projectile Collision
-		for (unsigned int j = 0; j < mouse.getProjectiles().size(); j++)
+		for (unsigned int j = 0; j < mouse->getProjectiles().size(); j++)
 		{
 
-			if (Entity::checkCollision(*mouse.getProjectiles()[j], *enemies[i]))
-				mouse.getProjectiles()[j]->damage(enemies[i]);
+			if (Entity::checkCollision(*mouse->getProjectiles()[j], *enemies[i]))
+				mouse->getProjectiles()[j]->damage(enemies[i]);
 
 		}
 

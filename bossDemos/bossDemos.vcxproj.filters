@@ -93,6 +93,9 @@
     <ClCompile Include="RPGState.cpp">
       <Filter>Source Files\RPGMode</Filter>
     </ClCompile>
+    <ClCompile Include="Toast.cpp">
+      <Filter>Source Files\HackMode\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll">
@@ -174,6 +177,9 @@
     </ClInclude>
     <ClInclude Include="RPGState.h">
       <Filter>Header Files\RPGMode</Filter>
+    </ClInclude>
+    <ClInclude Include="Toast.h">
+      <Filter>Header Files\HackMode\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

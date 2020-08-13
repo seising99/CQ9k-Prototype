@@ -62,6 +62,11 @@ Entity::Entity(const sf::Texture& txt)
 
 }
 
+sf::Sprite* Entity::getSprite()
+{
+	return &sprite;
+}
+
 //Getters and Setters for position, velocity, rotation, scale, health, and drawing priority
 sf::Vector2f Entity::getPosition()
 {
@@ -148,12 +153,15 @@ void Entity::draw() //TODO -- Singleton 'View' holds all entities and runs Draw(
 
 bool Entity::checkCollision(Entity& _e1, Entity& _e2, bool pixelPerfect)
 {
+
+	const sf::FloatRect e1_rect(_e1.getPosition().x - _e1.sprite.getGlobalBounds().width / 2, _e1.getPosition().y - _e1.sprite.getGlobalBounds().height / 2, _e1.sprite.getGlobalBounds().width, _e1.sprite.getGlobalBounds().height);
+	const sf::FloatRect e2_rect(_e2.getPosition().x - _e2.sprite.getGlobalBounds().width / 2, _e2.getPosition().y - _e2.sprite.getGlobalBounds().height / 2, _e2.sprite.getGlobalBounds().width, _e2.sprite.getGlobalBounds().height);
 	
-	if (_e1.sprite.getGlobalBounds().intersects(_e2.sprite.getGlobalBounds()))
+	if (e1_rect.intersects(e2_rect))
 	{
 
 		if (pixelPerfect)
-			return Collision::PixelPerfectTest(_e1.sprite, _e2.sprite, 127);
+			return Collision::PixelPerfectTest(_e1.sprite, _e2.sprite, 200);
 		else 
 			return true;
 

@@ -10,9 +10,10 @@
 Game::Game()
 {
 
-	window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width / 1.5, sf::VideoMode::getDesktopMode().height / 1.5), "CompuQuest9000 Demo");
+	window.create(sf::VideoMode(unsigned int(float(sf::VideoMode::getDesktopMode().width) / 1.5f), unsigned int(float(sf::VideoMode::getDesktopMode().height) / 1.5f)), "CompuQuest9000 Demo");
 	window.setView(sf::View(sf::FloatRect(0, 0, (float)window.getSize().x, (float)window.getSize().y)));
 	window.setMouseCursorVisible(true);
+	window.setVerticalSyncEnabled(false);
 	window.setFramerateLimit(60);
 
 	sf::Image icon;
@@ -90,5 +91,7 @@ GameState* Game::getState()
 
 void Game::setState(GameState* newState)
 {
+	delete currentState;
+	currentState = nullptr;
 	currentState = newState;
 }

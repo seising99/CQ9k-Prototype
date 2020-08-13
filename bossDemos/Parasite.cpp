@@ -4,10 +4,10 @@
 #include "VectorMath.h"
 #include "EntityManager.h"
 
-#include <iostream>
-
 Parasite::Parasite() : Enemy(TEXTURES("parasite"))
 {
+
+	getSprite()->setScale(sf::Vector2f(1.5f, 1.5f));
 
 	sf::Vector2f pos(0.0f, 0.0f);
 	sf::Vector2f vel(0.0f, 0.0f);
@@ -101,5 +101,5 @@ sf::Vector2f Parasite::getSeparation()
 
 float Parasite::getDamage()
 {
-	return 5;
+	return 5.0f;
 }

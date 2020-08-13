@@ -1,6 +1,14 @@
 #pragma once
 #include "Entity.h"
 
+/*
+*	LivingEntity: An abstract class/interface for all living game objects
+*	-- Extends Entity, giving living entities all the same properties as regular entities
+*	-- Holds health and damage
+*	-- Damage and kill functions to set another entity's health
+*	-- collision() to detect when two living entities collide
+*/
+
 class LivingEntity : public Entity
 {
 
