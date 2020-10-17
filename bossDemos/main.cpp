@@ -2,6 +2,10 @@
 #include "Game.h"
 #include "TextureMap.h"
 #include "EntityManager.h"
+#include <iostream>
+#include <string.h>
+#include <stdlib.h>
+
 
 //Create singletons
 Game* Game::singleton = 0;

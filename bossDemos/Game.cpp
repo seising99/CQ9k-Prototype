@@ -2,7 +2,7 @@
 #include "TextureMap.h"
 #include "EntityManager.h"
 #include "HackModeState.h"
-#include "MenuState.h"
+#include "RPGState.h"
 #include <time.h>
 #include "Parasite.h"
 
@@ -10,14 +10,19 @@
 Game::Game()
 {
 
+<<<<<<< Updated upstream
 	window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width / 1.5, sf::VideoMode::getDesktopMode().height / 1.5), "CompuQuest9000 Demo");
+=======
+	window.create(sf::VideoMode(unsigned int(float(sf::VideoMode::getDesktopMode().width) / 1.5f), unsigned int(float(sf::VideoMode::getDesktopMode().height) / 1.5f)), "CompuQuest9000 Demo", sf::Style::Close);
+	window.setSize(sf::Vector2u(800, 600));
+>>>>>>> Stashed changes
 	window.setView(sf::View(sf::FloatRect(0, 0, (float)window.getSize().x, (float)window.getSize().y)));
 	window.setMouseCursorVisible(true);
 	window.setFramerateLimit(60);
 
 	sf::Image icon;
-	icon.loadFromFile("sprites/icon.png");
-	window.setIcon(32, 32, icon.getPixelsPtr());
+	icon.loadFromFile("sprites/cmd.png");
+	window.setIcon(16, 16, icon.getPixelsPtr());
 
 	deltaTime = 0;
 	currentState = nullptr;
@@ -42,7 +47,7 @@ float Game::getTime()
 void Game::run()
 {
 
-	currentState = new MenuState();
+	currentState = new HackModeState();
 
 	while (window.isOpen())
 	{

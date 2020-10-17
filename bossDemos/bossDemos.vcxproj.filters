@@ -49,6 +49,12 @@
     <Filter Include="Source Files\RPGMode">
       <UniqueIdentifier>{f61f75e2-213d-41f9-9495-edfa1b16c9b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\HackMode\Levels">
+      <UniqueIdentifier>{0b1acd6f-f6a4-4b04-82da-7985ba22c5bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HackMode\Levels">
+      <UniqueIdentifier>{90494c86-91e2-4d7d-a3c0-a4965d10a849}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mouse.cpp">
@@ -93,6 +99,15 @@
     <ClCompile Include="RPGState.cpp">
       <Filter>Source Files\RPGMode</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="Toast.cpp">
+      <Filter>Source Files\HackMode\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="CD.cpp">
+      <Filter>Source Files\HackMode\Enemies</Filter>
+    </ClCompile>
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll">
@@ -175,5 +190,14 @@
     <ClInclude Include="RPGState.h">
       <Filter>Header Files\RPGMode</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="Toast.h">
+      <Filter>Header Files\HackMode\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="CD.h">
+      <Filter>Header Files\HackMode\Enemies</Filter>
+    </ClInclude>
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>

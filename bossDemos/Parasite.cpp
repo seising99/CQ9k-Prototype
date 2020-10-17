@@ -9,6 +9,18 @@
 Parasite::Parasite() : Enemy(TEXTURES("parasite"))
 {
 
+<<<<<<< Updated upstream
+=======
+	float randScale = ((rand() % 100) - 50) / 100.0f;
+
+	int randColor1 = rand() % 226 + 30;
+	int randColor2 = rand() % 226 + 30;
+	int randColor3 = rand() % 98 + 30;
+
+	setScale(sf::Vector2f(2.0f + randScale, 2.0f + randScale));
+	getSprite()->setColor(sf::Color(randColor1, randColor2, randColor3));
+
+>>>>>>> Stashed changes
 	sf::Vector2f pos(0.0f, 0.0f);
 	sf::Vector2f vel(0.0f, 0.0f);
 
@@ -77,7 +89,7 @@ sf::Vector2f Parasite::getSeparation()
 
 			sf::Vector2f acc = this->getPosition() - p->getPosition();
 			float dist = VectorMath::Length(acc);
-			float safeDist = 74; // 5 pixel radius around each
+			float safeDist = (p->getScale().x * 64) + 10; // 5 pixel radius around each
 
 			if (dist < safeDist)
 			{

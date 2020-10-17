@@ -1,11 +1,24 @@
 #include "HackModeState.h"
 #include "Game.h"
+<<<<<<< Updated upstream
+=======
+#include "Parasite.h"
+#include "Toast.h"
+#include "CD.h"
+>>>>>>> Stashed changes
 #include "EntityManager.h"
 #include <iostream>
 
 HackModeState::HackModeState()
 {
+<<<<<<< Updated upstream
 	WINDOW.create(sf::VideoMode::getDesktopMode(), "CompuQuest9000 Demo", sf::Style::Fullscreen);
+=======
+
+	mouse = new Mouse();
+
+	WINDOW.create(sf::VideoMode::getDesktopMode(), "CompuQuest9000 Demo", sf::Style::None);
+>>>>>>> Stashed changes
 	WINDOW.setView(sf::View(sf::FloatRect(0, 0, (float)WINDOW.getSize().x, (float)WINDOW.getSize().y)));
 	WINDOW.setMouseCursorVisible(false);
 	WINDOW.setFramerateLimit(60);
@@ -37,6 +50,19 @@ void HackModeState::input()
 				Parasite* p = new Parasite();
 				enemies.push_back(p);
 			}
+<<<<<<< Updated upstream
+=======
+			if (event.key.code == sf::Keyboard::Y)
+			{
+				Toast* t = new Toast();
+				enemies.push_back(t);
+			}
+			if (event.key.code == sf::Keyboard::G)
+			{
+				CD* c = new CD();
+				enemies.push_back(c);
+			}
+>>>>>>> Stashed changes
 
 		}
 
@@ -46,8 +72,6 @@ void HackModeState::input()
 
 void HackModeState::update()
 {
-
-	ENTITY_MANAGER->update();
 
 /* -- Check for Collisions -- */
 
@@ -80,6 +104,8 @@ void HackModeState::update()
 		}
 
 	}
+
+	ENTITY_MANAGER->update();
 
 }
 
