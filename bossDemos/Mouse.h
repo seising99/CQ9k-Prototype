@@ -10,9 +10,9 @@
 #define SCALE_X .75f
 #define SCALE_Y .75f
 
-#define BULLET_SPEED 25
+#define BULLET_SPEED 40
 
-#define COOLDOWN_LEFT .1f
+#define COOLDOWN_LEFT .05f
 #define COOLDOWN_RIGHT .25f
 
 class Mouse : public LivingEntity

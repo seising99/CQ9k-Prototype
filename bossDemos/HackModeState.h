@@ -3,6 +3,8 @@
 #include "Enemy.h"
 #include "GameState.h"
 #include <vector>
+#include <string.h>
+
 class HackModeState : public GameState
 {
 

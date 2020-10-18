@@ -55,4 +55,8 @@ void TextureMap::EmplaceTextures()
 	tToaster->loadFromFile("sprites/sToaster.png");
 	map.emplace("toaster", tToaster);
 
+	sf::Texture* tCD = new sf::Texture();
+	tCD->loadFromFile("sprites/cd_rom.png");
+	map.emplace("cd", tCD);
+
 }

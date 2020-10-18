@@ -2,7 +2,7 @@
 #include "TextureMap.h"
 #include "EntityManager.h"
 #include "HackModeState.h"
-#include "MenuState.h"
+#include "RPGState.h"
 #include <time.h>
 #include "Parasite.h"
 
@@ -17,8 +17,8 @@ Game::Game()
 	window.setFramerateLimit(60);
 
 	sf::Image icon;
-	icon.loadFromFile("sprites/icon.png");
-	window.setIcon(32, 32, icon.getPixelsPtr());
+	icon.loadFromFile("sprites/cmd.png");
+	window.setIcon(16, 16, icon.getPixelsPtr());
 
 	deltaTime = 0;
 	currentState = nullptr;
@@ -43,7 +43,7 @@ float Game::getTime()
 void Game::run()
 {
 
-	currentState = new MenuState();
+	currentState = new HackModeState();
 
 	while (window.isOpen())
 	{

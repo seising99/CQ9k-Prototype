@@ -2,14 +2,14 @@
 #include "Game.h"
 #include "Parasite.h"
 #include "Toast.h"
+#include "CD.h"
 #include "EntityManager.h"
 
 HackModeState::HackModeState()
 {
-
 	mouse = new Mouse();
 
-	WINDOW.create(sf::VideoMode::getDesktopMode(), "CompuQuest9000 Demo", sf::Style::Fullscreen);
+	WINDOW.create(sf::VideoMode::getDesktopMode(), "CompuQuest9000 Demo", sf::Style::None);
 	WINDOW.setView(sf::View(sf::FloatRect(0, 0, (float)WINDOW.getSize().x, (float)WINDOW.getSize().y)));
 	WINDOW.setMouseCursorVisible(false);
 	WINDOW.setFramerateLimit(60);
@@ -46,6 +46,11 @@ void HackModeState::input()
 				Toast* t = new Toast();
 				enemies.push_back(t);
 			}
+			if (event.key.code == sf::Keyboard::G)
+			{
+				CD* c = new CD();
+				enemies.push_back(c);
+			}
 
 		}
 
@@ -55,8 +60,6 @@ void HackModeState::input()
 
 void HackModeState::update()
 {
-
-	ENTITY_MANAGER->update();
 
 /* -- Check for Collisions -- */
 
@@ -89,6 +92,8 @@ void HackModeState::update()
 		}
 
 	}
+
+	ENTITY_MANAGER->update();
 
 }
 

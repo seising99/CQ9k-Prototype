@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "LivingEntity.h"
 
-#define SPEED 25
+#define SPEED 20
 
 /*
 *	Projectile: Objects fired by the M.O.U.S.E. to attack enemies.
