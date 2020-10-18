@@ -4,7 +4,6 @@
 /*
 *	Entity: An abstract class/interface for all game objects
 *	-- Holds a sprite, along with it's position, velocity, and rotation
-*	-- Holds an entities health (if applicable)
 *	-- Holds an entities priority (larger priority entities are drawn towards the front of the screen)
 *	-- update() and draw() to update entity attributes and draw them to the screen
 */
@@ -19,13 +18,15 @@ class Entity
 	sf::Vector2f pos;
 	sf::Vector2f vel;
 
-	float rotation;
+	float rotation = 0;
 
 	char drawPriority = 0;
 
 protected:
 
 	EntityType type;
+
+	sf::Sprite* getSprite();
 
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f);
@@ -53,6 +54,6 @@ public:
 	virtual void update() = 0; //All entities must have an update() to update position, velocity, etc.
 	void draw(); //All entities have a draw function, where the default updates position and rotation, and draws the entity to the screen
 
-	static bool checkCollision(Entity&, Entity&, bool = false);
+	static bool checkCollision(Entity&, Entity&, bool pixelPerfect = false);
 
 };

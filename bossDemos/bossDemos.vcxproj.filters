@@ -99,15 +99,12 @@
     <ClCompile Include="RPGState.cpp">
       <Filter>Source Files\RPGMode</Filter>
     </ClCompile>
-<<<<<<< Updated upstream
-=======
     <ClCompile Include="Toast.cpp">
       <Filter>Source Files\HackMode\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="CD.cpp">
       <Filter>Source Files\HackMode\Enemies</Filter>
     </ClCompile>
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll">
@@ -190,14 +187,11 @@
     <ClInclude Include="RPGState.h">
       <Filter>Header Files\RPGMode</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
-=======
     <ClInclude Include="Toast.h">
       <Filter>Header Files\HackMode\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="CD.h">
       <Filter>Header Files\HackMode\Enemies</Filter>
     </ClInclude>
->>>>>>> Stashed changes
   </ItemGroup>
 </Project>

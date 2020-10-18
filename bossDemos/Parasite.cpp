@@ -4,13 +4,9 @@
 #include "VectorMath.h"
 #include "EntityManager.h"
 
-#include <iostream>
-
 Parasite::Parasite() : Enemy(TEXTURES("parasite"))
 {
 
-<<<<<<< Updated upstream
-=======
 	float randScale = ((rand() % 100) - 50) / 100.0f;
 
 	int randColor1 = rand() % 226 + 30;
@@ -20,7 +16,6 @@ Parasite::Parasite() : Enemy(TEXTURES("parasite"))
 	setScale(sf::Vector2f(2.0f + randScale, 2.0f + randScale));
 	getSprite()->setColor(sf::Color(randColor1, randColor2, randColor3));
 
->>>>>>> Stashed changes
 	sf::Vector2f pos(0.0f, 0.0f);
 	sf::Vector2f vel(0.0f, 0.0f);
 
@@ -113,5 +108,5 @@ sf::Vector2f Parasite::getSeparation()
 
 float Parasite::getDamage()
 {
-	return 5;
+	return 5.0f;
 }

@@ -7,7 +7,7 @@ Projectile::Projectile(sf::Vector2f _pos, sf::Vector2f _vel, const sf::Texture& 
 
 Projectile::~Projectile()
 {
-	
+
 }
 
 //Bullet Constructor -- Calls Projectile Constructor, and sets appropriate scale
@@ -33,15 +33,15 @@ void Projectile::update()
 	//Kill if outside window
 	if (!checkInWindow()) kill(this);
 
-	//Delete if killed
-	if (getHealth() <= 0) delete this;
-
 }
 
 void Projectile::damage(LivingEntity* _e)
 {
-	_e->setHealth(_e->getHealth() - getDamage());
-	kill(this);
+	if (_e->getHealth() > 0)
+	{
+		_e->setHealth(_e->getHealth() - getDamage());
+		kill(this);
+	}
 }
 
 //Get Damage -- Different damage for each projectile type

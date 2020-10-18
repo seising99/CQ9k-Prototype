@@ -8,7 +8,7 @@
 class HackModeState : public GameState
 {
 
-	Mouse mouse;
+	Mouse* mouse = nullptr;
 
 public:
 

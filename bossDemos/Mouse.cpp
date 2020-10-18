@@ -63,12 +63,14 @@ void Mouse::update()
 	setPosition(sf::Vector2f((float)sf::Mouse::getPosition(WINDOW).x, (float)sf::Mouse::getPosition(WINDOW).y));
 
 	//Remove dead projectiles from reference vector
-	for(Projectile* p : projectiles)
-		if (p->getHealth() <= 0)
+	for(unsigned int i = 0; i < projectiles.size(); i++)
+		if (projectiles[i]->getHealth() <= 0)
 		{
-			auto it = std::find(projectiles.begin(), projectiles.end(), p);
-			if(it != projectiles.end())
+			auto it = std::find(projectiles.begin(), projectiles.end(), projectiles[i]);
+			delete projectiles[i];
+			if (it != projectiles.end())
 				projectiles.erase(it);
+				
 		}
 
 }

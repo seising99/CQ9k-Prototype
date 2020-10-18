@@ -24,7 +24,7 @@ class Game
 	Game();
 	~Game();
 
-	GameState* currentState;
+	GameState* currentState = nullptr;
 
 	//deltaClock and deltaTime ensure physics act the same regardless of framerate
 	sf::Clock deltaClock;

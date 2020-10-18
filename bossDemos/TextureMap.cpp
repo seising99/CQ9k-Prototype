@@ -51,8 +51,6 @@ void TextureMap::EmplaceTextures()
 	tMenu->loadFromFile("sprites/cq9k_menu.png");
 	map.emplace("menu", tMenu);
 
-<<<<<<< Updated upstream
-=======
 	sf::Texture* tToaster = new sf::Texture();
 	tToaster->loadFromFile("sprites/sToaster.png");
 	map.emplace("toaster", tToaster);
@@ -61,5 +59,4 @@ void TextureMap::EmplaceTextures()
 	tCD->loadFromFile("sprites/cd_rom.png");
 	map.emplace("cd", tCD);
 
->>>>>>> Stashed changes
 }
