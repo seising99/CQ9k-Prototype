@@ -37,6 +37,26 @@ void TextureMap::EmplaceTextures()
 
 	sf::Texture* tBullet = new sf::Texture();
 	tBullet->loadFromFile("sprites/sBullet.png");
-	map.emplace("bullet", tMouse);
+	map.emplace("bullet", tBullet);
+
+	sf::Texture* tRocket = new sf::Texture();
+	tRocket->loadFromFile("sprites/sRocket.png");
+	map.emplace("rocket", tRocket);
+
+	sf::Texture* tParasite = new sf::Texture();
+	tParasite->loadFromFile("sprites/sParasite.png");
+	map.emplace("parasite", tParasite);
+
+	sf::Texture* tMenu = new sf::Texture();
+	tMenu->loadFromFile("sprites/cq9k_menu.png");
+	map.emplace("menu", tMenu);
+
+	sf::Texture* tToaster = new sf::Texture();
+	tToaster->loadFromFile("sprites/sToaster.png");
+	map.emplace("toaster", tToaster);
+
+	sf::Texture* tCD = new sf::Texture();
+	tCD->loadFromFile("sprites/cd_rom.png");
+	map.emplace("cd", tCD);
 
 }

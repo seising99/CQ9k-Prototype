@@ -2,16 +2,28 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Projectile.h"
+#include "LivingEntity.h"
 
-class Mouse
+#define SLOW_ROT 200
+#define FAST_ROT 500
+
+#define SCALE_X .75f
+#define SCALE_Y .75f
+
+#define BULLET_SPEED 40
+
+#define COOLDOWN_LEFT .05f
+#define COOLDOWN_RIGHT .25f
+
+class Mouse : public LivingEntity
 {
 
-	sf::Vector2f position;
-
-	float angle;
 	int rocketCount;
 
-	sf::Sprite sMouse;
+	bool canFire;
+	
+	sf::Clock cooldownClock;	//Tracks time elapsed for cooldown
+	float cooldownTime;			//Determines length of cooldown
 
 	std::vector<Projectile*> projectiles;
 
@@ -23,21 +35,12 @@ public:
 	void fireBullet();
 	void fireRocket();
 
-	sf::Vector2f getPosition();
+	std::vector<Projectile*>& getProjectiles();
 
-	std::vector<Projectile*> getProjectiles();
-	void updatePositions();
-
-	void Draw();
-
-	bool checkInWindow();
+	void update();			//Update Model
+	void inputHandler();	//Controller
 
 	int getRocketCount() const;
 	void setRocketCount(int newCount);
-
-	float getAngle() const;
-	void setAngle(float newAngle);
-
-	sf::Sprite getSprite();
 
 };

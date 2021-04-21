@@ -1,21 +1,34 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Mouse.h"
+#include "GameState.h"
 
 #define WIDTH 1280
 #define HEIGHT 720
 
 #define WINDOW Game::instance()->getWindow()
+#define DT Game::instance()->getTime()
+#define GAME_STATE Game::instance()->getState()
+
+/*
+*	Game: The Global Game Object
+*	-- Singleton ensures single global game object
+*	-- Game operations split into 3 functions
+*		-- Input Handling
+*		-- Updating Entities
+*		-- Rendering Entities
+*/
 
 class Game
 {
 
-private:
-
 	Game();
 	~Game();
 
-	Mouse mouse;
+	GameState* currentState = nullptr;
+
+	//deltaClock and deltaTime ensure physics act the same regardless of framerate
+	sf::Clock deltaClock;
+	float deltaTime;
 
 	static Game* singleton;
 
@@ -28,9 +41,14 @@ private:
 public:
 
 	void run();
-	sf::RenderWindow& getWindow();
-	Mouse& getMouse();
 
+	sf::RenderWindow& getWindow();
+	GameState* getState();
+	void setState(GameState*);
+
+	float getTime();
+
+	//Lazy Instantiation
 	static Game* instance()
 	{
 		if (!singleton)

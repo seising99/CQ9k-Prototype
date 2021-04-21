@@ -1,5 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "LivingEntity.h"
+
+#define SPEED 20
 
 /*
 *	Projectile: Objects fired by the M.O.U.S.E. to attack enemies.
@@ -8,53 +11,42 @@
 *	-- getDamage() virtual function, different projectiles deal different damage
 */
 
-class Projectile
+class Projectile : public LivingEntity
 {
 
 protected:
 
-	sf::Sprite sProjectile;
-
-	sf::Vector2f vel;
-	sf::Vector2f pos;
-
-	virtual int getDamage() const { return 0; }; //Each projectile has different damage
-	virtual void setTexture() const { }; //Each projectile has different texture
+	virtual float getDamage() const { return 0; }; //Each projectile has different damage
 
 public:
 
-	Projectile(sf::Vector2f, sf::Vector2f); //Constructor for all projectiles
+	Projectile(sf::Vector2f, sf::Vector2f, const sf::Texture&);
+	~Projectile();
 
-	void Draw();
+	void update();
 
-	sf::Vector2f getVelocity() const;
-	sf::Vector2f getPos() const;
-
-	void setVelocity(sf::Vector2f);
-	void setPosition(sf::Vector2f);
+	void damage(LivingEntity*);
 
 };
 
 class Bullet : public Projectile
 {
 
-	void setTexture();
-
 public:
 
-	Bullet(sf::Vector2f, sf::Vector2f) : Projectile(pos, vel) { } ; //Calls parent constructor
-	int getDamage();
+	Bullet(sf::Vector2f _pos, sf::Vector2f _vel, float _rot); //Calls parent, which calls parent, which sets proper texture
+
+	float getDamage() const;
 
 };
 
 class Rocket : public Projectile
 {
 
-	void setTexture();
-
 public:
 
-	Rocket(sf::Vector2f, sf::Vector2f) : Projectile(pos, vel) { }; //Calls parent constructor
-	int getDamage();
+	Rocket(sf::Vector2f _pos, sf::Vector2f _vel, float _rot); //Calls parent, which calls parent, which sets proper texture
+
+	float getDamage() const;
 
 };

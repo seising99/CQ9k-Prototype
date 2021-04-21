@@ -2,16 +2,19 @@
 #include "Game.h"
 #include "TextureMap.h"
 
-Mouse::Mouse()
+Mouse::Mouse() : LivingEntity(TEXTURES("mouse"))
 {
 
-	sMouse.setTexture(TEXTURES("mouse"));
-	sMouse.setOrigin(sMouse.getTextureRect().width / 2, sMouse.getTextureRect().height / 2);
-	sMouse.setScale(sf::Vector2f(0.75f, 0.75f));
-
-	angle = -30;
-
+	canFire = true;
 	rocketCount = 0;
+	cooldownTime = 0;
+
+	setHealth(100);
+
+	setRotation(-30);
+	setScale(sf::Vector2f(SCALE_X, SCALE_Y));
+
+	setPriority(127);
 
 }
 
@@ -20,66 +23,95 @@ Mouse::~Mouse() {}
 void Mouse::fireBullet()
 {
 
-	sf::Vector2f pos = this->getPosition();
-	sf::Vector2f vel = sf::Vector2f(cos((angle - 90) * (float)3.1415926 / 180) * 20, sin((angle - 90) * (float)3.1415926 / 180) * 20);
+	if (checkInWindow())
+	{
 
-	Bullet* newBullet = new Bullet(pos, vel);
-	projectiles.push_back(newBullet);
+		sf::Vector2f pos = this->getPosition();
+		sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
+
+		Bullet* newBullet = new Bullet(pos, vel, getRotation());
+		projectiles.push_back(newBullet);
+
+	}
 
 }
 
 void Mouse::fireRocket()
 {
 
-	sf::Vector2f pos = this->getPosition();
-	sf::Vector2f vel = sf::Vector2f(cos((this->getAngle() - 90) * (float)3.1415926 / 180) * 20, sin((this->getAngle() - 90) * (float)3.1415926 / 180) * 20);
+	if (checkInWindow())
+	{
 
-	Bullet* newBullet = new Bullet(pos, vel);
-	projectiles.push_back(newBullet);
+		sf::Vector2f pos = this->getPosition();
+		sf::Vector2f vel = sf::Vector2f(cos((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED, sin((getRotation() - 90) * (float)3.1415926 / 180) * BULLET_SPEED);
+
+		Rocket* newBullet = new Rocket(pos, vel, getRotation());
+		projectiles.push_back(newBullet);
+
+	}
 
 }
 
-sf::Vector2f Mouse::getPosition()
-{
-	return position;
-}
-
-std::vector<Projectile*> Mouse::getProjectiles()
+std::vector<Projectile*>& Mouse::getProjectiles()
 {
 	return projectiles;
 }
 
-void Mouse::updatePositions()
+void Mouse::update()
 {
+	//Set new MOUSE position
+	setPosition(sf::Vector2f((float)sf::Mouse::getPosition(WINDOW).x, (float)sf::Mouse::getPosition(WINDOW).y));
 
-	position = sf::Vector2f((float)sf::Mouse::getPosition(WINDOW).x, (float)sf::Mouse::getPosition(WINDOW).y);
-
-	sMouse.setPosition(position);
-	sMouse.setRotation(angle);
+	//Remove dead projectiles from reference vector
+	for(unsigned int i = 0; i < projectiles.size(); i++)
+		if (projectiles[i]->getHealth() <= 0)
+		{
+			auto it = std::find(projectiles.begin(), projectiles.end(), projectiles[i]);
+			delete projectiles[i];
+			if (it != projectiles.end())
+				projectiles.erase(it);
+				
+		}
 
 }
 
-void Mouse::Draw()
+void Mouse::inputHandler()
 {
 
-	if (checkInWindow())
+	//Rotating M.O.U.S.E. Angle
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		setRotation(getRotation() - SLOW_ROT * DT);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		setRotation(getRotation() + SLOW_ROT * DT);
+		
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		setRotation(getRotation() - FAST_ROT * DT);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		setRotation(getRotation() + FAST_ROT * DT);
+
+	//Fire Projectiles
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && canFire && checkInWindow())
 	{
-		WINDOW.draw(sMouse);
+		canFire = false;
+		fireBullet();
+		cooldownClock.restart();
+		cooldownTime = COOLDOWN_LEFT;
 	}
 
-	//Draw mouse's projectiles
-	for (auto&& p : projectiles)
-		p->Draw();
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && canFire && checkInWindow())
+	{
+		canFire = false;
+		fireRocket();
+		cooldownClock.restart();
+		cooldownTime = COOLDOWN_RIGHT;
+	}
 
-}
-
-bool Mouse::checkInWindow()
-{
-
-	sf::FloatRect currentView(WINDOW.getView().getCenter().x - WINDOW.getView().getSize().x / 2, WINDOW.getView().getCenter().y - WINDOW.getView().getSize().y / 2, WINDOW.getView().getSize().x, WINDOW.getView().getSize().y);
-
-	if (currentView.contains(this->getPosition().x, this->getPosition().y)) return true;
-	else return false;
+	//Projectile Cooldown
+	if (cooldownClock.getElapsedTime().asSeconds() > cooldownTime)
+	{
+		cooldownClock.restart();
+		canFire = true;
+	}
 
 }
 
@@ -91,19 +123,4 @@ int Mouse::getRocketCount() const
 void Mouse::setRocketCount(int newCount)
 {
 	rocketCount = newCount;
-}
-
-float Mouse::getAngle() const
-{
-	return angle;
-}
-
-void Mouse::setAngle(float newAngle)
-{
-	angle = newAngle;
-}
-
-sf::Sprite Mouse::getSprite()
-{
-	return sMouse;
 }
